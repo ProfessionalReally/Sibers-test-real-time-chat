@@ -1,0 +1,14 @@
+{
+  "name": "chat-realtime",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server/server.js"
+  },
+  "author": "Nikita Lenkov",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
