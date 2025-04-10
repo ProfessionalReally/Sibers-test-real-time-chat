@@ -1,6 +1,7 @@
 const express = require('express')
 const dotenv = require('dotenv');
 const {connectDataBase} = require("./config/db");
+const colors = require('colors');
 
 dotenv.config();
 connectDataBase();
@@ -13,5 +14,5 @@ app.get('/', (req, res) => {
 })
 
 app.listen(PORT, () => {
-    console.log(`Example app listening on port ${PORT}`)
+    console.log(`Example app listening on port ${PORT}`.yellow.bold)
 })
