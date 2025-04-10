@@ -1,5 +1,6 @@
 import {Container, Flex, Paper, Tabs, Title} from "@mantine/core";
 import Signup from '../Authentication/Singup.jsx'
+import Login from "../Authentication/Login.jsx";
 export default function AuthPage() {
 
     return (
@@ -45,9 +46,8 @@ export default function AuthPage() {
                             </Tabs.Tab>
                         </Tabs.List>
                         <Tabs.Panel value="login">
-                            Login tab content
+                            <Login/>
                         </Tabs.Panel>
-
                         <Tabs.Panel value="sign-up">
                             <Signup/>
                         </Tabs.Panel>

@@ -37,7 +37,7 @@ export default function Singup() {
                     label="Upload your Picture"
                     placeholder="Upload your Picture"
                 />
-                <Button mt={20} fullWidth>
+                <Button mt={20} type='submit' fullWidth>
                     Sign up
                 </Button>
             </Stack>
