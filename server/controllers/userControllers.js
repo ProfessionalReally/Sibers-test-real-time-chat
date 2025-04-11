@@ -75,7 +75,6 @@ const authUser = async (req, res) => {
     }
 };
 
-
 module.exports = {
     registerUser: asyncHandler(registerUser),
     authUser: asyncHandler(authUser),

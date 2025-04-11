@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const {connectDataBase} = require("./config/db");
 const colors = require('colors');
 const userRoutes = require('./routes/userRoutes')
+const { notFound, errorHandler } = require('./middleware/errorMiddleware');
 const API_USER = '/api/user';
 
 dotenv.config();
@@ -16,6 +17,8 @@ app.get('/', (req, res) => {
 })
 
 app.use(API_USER, userRoutes);
+app.use(notFound);
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 3000;
 
