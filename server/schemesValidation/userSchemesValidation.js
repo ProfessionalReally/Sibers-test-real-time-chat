@@ -14,6 +14,14 @@ const userRegisterScheme = [[
         .exists().withMessage('Password is required')
         .notEmpty().withMessage('Password cannot be empty')
         .isLength({ min: 6 }).withMessage('Password must be at least 6 characters long'),
+]];
+
+const userAuthScheme = [[
+    body('email')
+        .notEmpty().withMessage('Email is required')
+        .isEmail().withMessage('Please provide a valid email address'),
+    body('password')
+        .notEmpty().withMessage('Password is required'),
 ]]
 
-module.exports = {userRegisterScheme};
+module.exports = {userRegisterScheme, userAuthScheme};

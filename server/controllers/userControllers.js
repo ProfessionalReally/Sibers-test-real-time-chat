@@ -45,5 +45,38 @@ const registerUser = async (req, res) => {
     }
 };
 
+const authUser = async (req, res) => {
 
-module.exports = { registerUser: asyncHandler(registerUser) }
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+        console.log(errors);
+        const errorMessage = errors.array().map(error => `${error.msg}`).join(', ');
+        res.status(400)
+        throw new Error(`Validation failed: ${errorMessage}`);
+    }
+
+    const {email, password} = req.body;
+
+    const user = await User.findOne({email});
+
+    if (user && (await user.matchPassword(password))) {
+        res.json({
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            isAdmin: user.isAdmin,
+            picture: user.picture,
+            token: generateToken(user._id),
+        });
+    } else {
+        res.status(401);
+        throw new Error("Invalid Email or Password");
+    }
+};
+
+
+module.exports = {
+    registerUser: asyncHandler(registerUser),
+    authUser: asyncHandler(authUser),
+}
