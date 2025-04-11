@@ -1,6 +1,7 @@
 const {validationResult} = require('express-validator');
 const asyncHandler = require('express-async-handler');
 const User = require("../models/userModel");
+const generateToken = require('../config/generateToken');
 
 const registerUser = async (req, res) => {
 
@@ -36,6 +37,7 @@ const registerUser = async (req, res) => {
             email: user.email,
             isAdmin: user.isAdmin,
             picture: user.picture,
+            token: generateToken(user._id),
         });
     } else {
         res.status(400);
