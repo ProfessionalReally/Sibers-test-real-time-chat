@@ -17,7 +17,8 @@ const userSchema = mongoose.Schema({
         },
         picture: {
             type: String,
-            required: false,
+            required: true,
+            default: 'https://i.pinimg.com/736x/50/d4/4b/50d44b920aa1dfdf47b217eabf484cbd.jpg'
         },
         isAdmin: {
             type: Boolean,
