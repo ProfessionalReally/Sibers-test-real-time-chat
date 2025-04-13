@@ -3,6 +3,20 @@ const asyncHandler = require('express-async-handler');
 const User = require("../models/userModel");
 const generateToken = require('../config/generateToken');
 
+const searchUsers = async (req, res) => {
+    const keyword = req.query.search
+        ? {
+            $or: [
+                {name: {$regex: req.query.search, $options: 'i'}},
+                {email: {$regex: req.query.search, $options: 'i'}},
+            ],
+        }
+        : {};
+
+    const users = await User.find(keyword).find({_id: {$ne: req.user._id}});
+    res.send(users);
+}
+
 const registerUser = async (req, res) => {
 
     const errors = validationResult(req);
@@ -78,4 +92,5 @@ const authUser = async (req, res) => {
 module.exports = {
     registerUser: asyncHandler(registerUser),
     authUser: asyncHandler(authUser),
+    searchUsers: asyncHandler(searchUsers),
 }
